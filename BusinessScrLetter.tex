@@ -1,0 +1,129 @@
+\documentclass
+  [fontsize=11pt,
+   paper=a4,
+   % enlargefirstpage=on,
+   % pagenumber=headright,
+%--------------- Layout -------------------------------------------------
+   headsepline=off,
+   parskip=half,
+   fromalign=right,% Place of the letterhead
+   fromphone=on,% Show phone numer
+   fromrule=aftername,% Show rule
+   fromfax=on,% Show fax number
+   fromemail=on,% Show mail address
+   fromurl=off,% Show Homepage
+   fromlogo=on,% Show logo
+   addrfield=on,% Show receiver address field
+   backaddress=on,% Show sender in receiver address field
+   subject=beforeopening,% Location of the letter subject
+   locfield=narrow,% Additional sender field
+   foldmarks=on,% Show folding location
+   numericaldate=off,% Date format
+   refline=narrow,% 
+   firstfoot=on,% Add a footer
+%---------------------------------------------------------------------------
+   draft=off% Draft mode
+]{scrlttr2}
+\usepackage[english, ngerman]{babel}  
+\usepackage{lmodern}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{tabularx}
+\usepackage{colortbl} % used for a colored header
+\RequirePackage{marvosym} % for symbols used in the header
+\usepackage[T1]{fontenc}
+
+% Font config
+\renewcommand*\familydefault{\sfdefault} % Latin Modern Sans
+\setkomafont{fromname}{\sffamily\color{headerGrey}\LARGE}
+\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\mdseries}
+\setkomafont{backaddress}{\mdseries}
+\setkomafont{fromaddress}{\small\sffamily\mdseries\color{headerGrey}}
+
+\begin{document}
+
+% Letter style
+\LoadLetterOption{DIN} % or: DINmtext, SN, SNleft, KOMAold.
+
+% Define header grey
+\definecolor{headerGrey}{gray}{.55}
+
+% SENDER Data
+\setkomavar{fromname}{SENDER NAME}
+\newcommand{\fromnameShort}{SHORT SENDERNAME}
+\setkomavar{fromaddress}{STREET\\TOWN}
+\setkomavar{fromphone}[\Mobilefone~]{PHONE}
+\setkomavar{fromfax}[\FAX~]{FAX}
+\setkomavar{fromemail}[\Letter~]{MAIL}
+%\setkomavar{fromurl}[]{HOMEPAGE URL}
+\setkomavar{backaddressseparator}{ - }
+%\setkomavar{backaddress}{} % override back address
+\setkomavar{signature}{SIGNATURE} 
+
+% Pagestyle
+\pagestyle{plain} % no header
+\pagenumbering{arabic}
+\makeatletter
+\@setplength{sigbeforevskip}{1cm} % More space between greeting and signature
+\makeatother
+\renewcommand*{\raggedsignature}{\raggedright} % match signature indention level to the rest of the text
+
+% Footer
+\firstfoot{\footnotesize
+\rule[3pt]{\textwidth}{.4pt} \\
+\begin{tabular}[t]{l@{}}
+% Contact
+\textbf{Contact:}\\
+  \fromnameShort\\
+  \usekomavar{fromaddress}\\
+\end{tabular}
+\hfill
+\begin{tabular}[t]{l@{}}
+% Tax notice
+\textbf{Tax notice:}\\
+GERMAN TAX NUMBER\\
+INTERNATIONAL TAX NUMBER\\
+\end{tabular}
+\hfill
+\begin{tabular}[t]{l@{}}
+% Bank contact
+\textbf{Bank contact:}\\
+BANKNAME\\
+IBAN: \\
+BIC: 
+\end{tabular}
+}
+
+% Labels
+\setkomavar{yourref}[CUSTOMLABEL]{text}
+\setkomavar{yourmail}{text}
+\setkomavar{myref}{text}
+%\setkomavar{customer}{}
+%\setkomavar{invoice}{}
+\setkomavar{date}{\today}
+\setkomavar{place}{PLACE}
+
+\begin{letter}
+{
+ADDRESS RECEIVER
+}
+%---------------------------------------------------------------------------
+\setkomavar{subject}{\textbf{SUBJECT}}
+%---------------------------------------------------------------------------
+\opening{GREETING}
+
+TEXT
+
+\vspace{5pt}
+
+\closing{CLOSING}
+% \renewcaptionname{ngerman}{\enclname}{Anlage} % Rename attachment text
+\setkomavar{enclseparator}[\sffamily\bfseries\enclname]{}
+% Attachment list
+\encl{ }
+% Additional options
+% \ps{PS:}
+% \cc{}
+\end{letter}
+\end{document}

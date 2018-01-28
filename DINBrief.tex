@@ -1,0 +1,63 @@
+\documentclass[12pt,a4paper]{dinbrief}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage[style=german]{csquotes}
+\usepackage{palatino}
+
+\newcommand{\anhang}[1]{{Anlage:\\#1}}
+\newcommand{\anhaenge}[1]{{Anlagen:\\#1}}
+
+% Briefkopf - Empfänger
+\newcommand{\recipientName}{Name}
+\newcommand{\recipientStreet}{Stra{\ss}e}
+\newcommand{\recipientLocation}{Ort}
+
+% Briefkopf - Absender
+\newcommand{\senderName}{Name}
+\newcommand{\senderStreet}{Straße}
+\newcommand{\senderLocation}{Ort}
+
+\address{\senderName\\
+\senderStreet\\
+\senderLocation}
+
+\nowindowrules
+\backaddress{\senderName, \senderStreet, \senderLocation}
+
+% Optional: Zusätzliche Informationen zur Nachricht
+%\yourmail{}
+%\sign{}
+%\phone{}{}
+%\place{}
+\date{Datum}
+
+% Unterschrift
+\signature{Unterschrift}
+
+% Generieren von Brief-Labels
+%\makelabels
+
+% Betreff
+\subject{\textbf{Betreff}}
+
+% Inhalt
+\begin{document}
+\begin{letter}{\recipientName\\
+                \recipientStreet\\\\
+                \recipientLocation}
+\opening{Anrede,}
+
+text
+
+\closing{Grußformel}
+\anhang{
+\begin{itemize}
+  \item Anhang
+\end{itemize}
+}
+
+\end{letter}
+\end{document}

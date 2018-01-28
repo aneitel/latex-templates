@@ -1,0 +1,103 @@
+\documentclass[a4paper,11pt, openright, DIV15, BCOR15mm]{scrartcl}
+\KOMAoptions{cleardoublepage=empty}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage[english]{babel} % Choose your language
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{minutes}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{palatino}
+\usepackage[style=english]{csquotes} % Choose your language
+\usepackage{geometry}
+
+
+% Configuration
+\AtBeginDocument{\renewcommand{\contentsname}{Agenda}} % Rewrite the name of the agenda
+\setcounter{tocdepth}{2} % depth of toc
+
+\newcommand{\minuteDate}{date}
+\newcommand{\minuteTitle}{title}
+
+\author{author}
+\title{\minuteTitle}
+\date{\minuteDate}
+\pagestyle{myheadings}
+\markright{\minuteTitle}
+\raggedbottom
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection\ #1}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhf{}
+
+\fancyhead[C]{Header text}
+\fancyfoot[L]{\minuteDate}
+\fancyfoot[R]{Page \thepage\ of\ \pageref{LastPage}}
+
+\fancypagestyle{plain}{%
+   \fancyhead{} %
+   \fancyfoot{} %
+   \renewcommand{\headrulewidth}{0pt} %
+   \renewcommand{\footrulewidth}{0pt} %
+}
+
+\hypersetup{
+pdftitle = {\minuteTitle},
+pdfauthor = {pdfauthor},
+pdfsubject = {pdfsubject},
+pdfkeywords = {pdfkeywords},
+pdfdisplaydoctitle = true,
+pdfpagelayout = {SinglePage},
+linkcolor = black,
+filecolor = black,
+urlcolor = black,
+citecolor = black
+}
+
+
+
+\begin{document}
+\begin{Minutes}{\minuteTitle}
+% Minute header
+\moderation{moderation}
+\minutetaker{minutetaker}
+\participant{participants}
+\missing[missing excused]{missing without excuse}
+\guest{guests}
+\minutesdate{date}
+\starttime{start time}
+\endtime{end time}
+\location{location}
+\cc{cc}
+\thispagestyle{empty}
+\maketitle
+
+% Content goes here
+\topic{First Topic}
+\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consetetur sadipscing elitr
+	\item \task{WHO}[WHEN]{This task has to be done.}
+	\decisiontheme{Lorem}{Sample decision theme}
+	\item \decision{Lorem}{Decision 1}
+	\item \decision{Lorem}{Decision 2}
+\end{itemize}
+
+% Decision and task summary
+\section{Decisions}
+\label{minutes!decision}
+\listofdecisions
+\section{Open Tasks}
+\label{minutes!tasks}
+\listoftasks
+\signature{signature}
+
+%\appendix
+
+\end{Minutes}
+\end{document}

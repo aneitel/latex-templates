@@ -1,0 +1,14 @@
+# Ignore macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.fseventsd
+.Spotlight-V100
+
+# Ignore all existing templates of the Texpad creators
+Basic\ Article.tex
+Basic\ Book.tex
+Basic\ Letter.tex
+Basic\ Report.tex
+Beamer\ Presentation.tex
